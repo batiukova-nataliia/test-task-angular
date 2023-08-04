@@ -67,6 +67,10 @@
             "production": {
               "browserTarget": "test-task-angular:build:production"
             },
+            "options": {
+              "proxyConfig": "proxy.conf.json",
+              "browserTarget": "test-task-angular:build"
+            },
             "development": {
               "browserTarget": "test-task-angular:build:development"
             }

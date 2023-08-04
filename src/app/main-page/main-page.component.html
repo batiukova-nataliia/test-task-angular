@@ -1,0 +1,67 @@
+<header class="header page__body">
+  <div class="container__header">
+    <h1 class="header__title">Filter by keywords</h1>
+    <div class="header__search-bar">
+      <svg class="header__search-bar-img" width="20" height="20" viewBox="0 0 20 20" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M15.7832 14.3911L20 18.6069L18.6069 20L14.3911 15.7832C12.8224 17.0407 10.8713 17.7246 8.86088 17.7218C3.96968 17.7218 0 13.7521 0 8.86088C0 3.96968 3.96968 0 8.86088 0C13.7521 0 17.7218 3.96968 17.7218 8.86088C17.7246 10.8713 17.0407 12.8224 15.7832 14.3911ZM13.8082 13.6605C15.0577 12.3756 15.7555 10.6532 15.7527 8.86088C15.7527 5.05267 12.6681 1.96909 8.86088 1.96909C5.05267 1.96909 1.96909 5.05267 1.96909 8.86088C1.96909 12.6681 5.05267 15.7527 8.86088 15.7527C10.6532 15.7555 12.3756 15.0577 13.6605 13.8082L13.8082 13.6605Z"
+          fill="#575757" />
+      </svg>
+
+      <input type="text" class="header__search-bar-content" placeholder="The most successful IT companies in 2020"
+        [(ngModel)]="searchInput" (ngModelChange)="applyFilter()">
+    </div>
+    <p class="header__results">Results: {{visibleNews.length}}</p>
+
+  </div>
+
+</header>
+<main page__body>
+
+  <app-full-article *ngIf="articleText" [text]="articleText" [title]="articleTitle"
+    [img]="articleImg"></app-full-article>
+
+  <section class="page__news container">
+    <article class="item" *ngFor="let item of visibleNews">
+      <img [src]='item.image_url' alt="img1" class="item__img">
+      <div class="item__container">
+        <div class="item__date">
+          <svg class="item__date-img" width="16" height="16" viewBox="0 0 16 16" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.6" clip-path="url(#clip0_466_269)">
+              <path
+                d="M12 2.66675H3.99998C2.52722 2.66675 1.33331 3.86066 1.33331 5.33341V12.0001C1.33331 13.4728 2.52722 14.6667 3.99998 14.6667H12C13.4727 14.6667 14.6666 13.4728 14.6666 12.0001V5.33341C14.6666 3.86066 13.4727 2.66675 12 2.66675Z"
+                stroke="#363636" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M5.33331 1.33337V4.00004" stroke="#363636" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M10.6666 1.33337V4.00004" stroke="#363636" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M1.33331 6.66675H14.6666" stroke="#363636" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_466_269">
+                <rect width="16" height="16" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+          <p class="item__date-content">
+            {{formatDate(item.published_at)}}
+          </p>
+
+        </div>
+        <h1 class="item__title" [innerHTML]="highlightText(
+          reduceContent(item.title, 30)
+          )">
+          {{reduceContent(item.title, 30)}}
+        </h1>
+        <p class="item__description" [innerHTML]="highlightText(reduceContent(item.summary, 100))">
+          {{reduceContent(item.summary, 100)}}
+        </p>
+        <a [routerLink]="['/full-article', item.id]"
+          [state]="{ text: item.summary, title: item.title, img: item.image_url }" 
+          class="item__link">
+          Read more
+        </a>
+      </div>
+    </article>
+  </section>
+</main>
