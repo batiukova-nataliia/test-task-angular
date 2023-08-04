@@ -1,0 +1,14 @@
+.container {
+  padding: 50px 75px 63px;
+
+  &__full-article {
+    background-color: white;
+    border: 1px solid #EAEAEA;
+    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.05);
+    margin: -95px 75px 30px;
+    position: absolute;
+    z-index: 1;
+    padding: 35px 75px 50px;
+    width: 1140px;
+  }
+}
