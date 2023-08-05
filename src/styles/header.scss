@@ -34,12 +34,12 @@
   }
 
   &__results {
-    color: $c-primary;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
     display: block;
     position: relative;
     margin-bottom: 5px;
+
+    color: $c-primary;
+    font-size: 16px;
+    font-weight: 600;
   }
 }

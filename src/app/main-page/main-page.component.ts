@@ -72,7 +72,6 @@ export class MainPageComponent {
     this.newsService.getDataSecond().subscribe((data) => {
       this.myData = data;
       this.visibleNews = this.myData.results;
-      console.log(this.visibleNews);
     })
   }
 
@@ -81,7 +80,6 @@ export class MainPageComponent {
       item.title.toLowerCase().includes(this.searchInput.toLowerCase())
       || item.summary.toLowerCase().includes(this.searchInput.toLowerCase())
     );
-    console.log(this.visibleNews);
     this.state = !this.state;
   }
 
